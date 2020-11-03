@@ -35,7 +35,8 @@ router.get('/edit/:_id', function (req, res) {
 //router for editing_save
 router.post('/edit_add/:_id', function (req, res) {
     console.log('in edit_save function...', req.body);
-    books.splice(req.params._id - 1, 1, req.body);
+    let headIndex = books.findIndex((book) => book._id === req.params._id);
+    books.splice(headIndex, 1, { ...req.body, _id: req.params._id });
     res.redirect('/');
 });
 
