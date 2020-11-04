@@ -9,7 +9,15 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var booksRouter = require('./routes/books')     // add gareko pachi
 
+var mongoose = require('mongoose');       // to connect db to express we used mongoose package
+
+
 var app = express();
+
+//connect app to mongodb database in localhost with db name bookDB
+mongoose.connect('mongodb://localhost/bookDB',
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  () => { console.log('connected to db') });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
